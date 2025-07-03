@@ -23,6 +23,13 @@ const ProductSchema = mongoose.Schema(
             type: String,
             required: false,
         },
+
+        description: {
+            type: String,
+            required: [true, "please enter product name" ]
+
+        }
+
     },
     {
         timestamps: true

@@ -1,27 +1,29 @@
 const express = require('express')
 const mongoose = require('mongoose');
-const Product = require('./models/product.model.js');
+const cors = require('cors');
 const ProductRoute = require('./routes/product.route.js');
-const app = express()
 
+const app = express();
 
-//Middleware
+// Middleware
+app.use(cors({
+  origin: "http://localhost:3000", // Allow React frontend
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-//Routes
+// Routes
 app.use('/api/products', ProductRoute);
 
-
-
+// MongoDB Connection
 mongoose.connect("mongodb+srv://allwinjones3327:J1s3710@cluster0.w4hyibk.mongodb.net/")
-    .then(() => {
-        console.log("Connected to database!")
-        app.listen(3000, () => {
-            console.log("Server is running on port 3000")
-        });
-    })
-    .catch(() => {
-        console.log("Connection failed!")
+  .then(() => {
+    console.log("✅ Connected to MongoDB!");
+    app.listen(5000, () => {
+      console.log("🚀 Server is running on port 5000");
     });
+  })
+  .catch((err) => {
+    console.log("❌ MongoDB connection failed:", err);
+  });

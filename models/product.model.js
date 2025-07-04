@@ -24,6 +24,11 @@ const ProductSchema = mongoose.Schema(
             required: false,
         },
 
+        category: {
+            type: String,
+            required: false,
+        },
+
         description: {
             type: String,
             required: [true, "please enter product name" ]

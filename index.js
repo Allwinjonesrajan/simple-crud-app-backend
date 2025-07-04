@@ -7,8 +7,9 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "http://localhost:3000", // Allow React frontend
-  credentials: true
+  origin: ['http://localhost:3000', 'https://sports-ecommerce-frontend.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
